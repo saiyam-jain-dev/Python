@@ -12,8 +12,10 @@ def binomial_coefficient(n: int, r: int) -> int:
     252
     >>> binomial_coefficient(10, 0)
     1
-    >>> binomial_coefficient(0, 10)
+    >>> binomial_coefficient(0, 0)
     1
+    >>> binomial_coefficient(0, 10)
+    0
     >>> binomial_coefficient(10, 10)
     1
     >>> binomial_coefficient(5, 2)
@@ -41,8 +43,10 @@ def binomial_coefficient(n: int, r: int) -> int:
     """
     if n < 0 or r < 0:
         raise ValueError("n and r must be non-negative integers")
-    if 0 in (n, r):
+    if r == 0:
         return 1
+    if r > n:
+        return 0
     c = [0 for i in range(r + 1)]
     # nc0 = 1
     c[0] = 1
